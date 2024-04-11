@@ -12,6 +12,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
       - name: Install Dependencies
         run: |
           # Install any dependencies here, if you are using a static site generator
@@ -27,7 +32,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCES_KEY}}
           AWS_REGION: 'us-east-1'  # replace with the bucket's region
-          SOURCE_DIR: 'public'   # replace with the directory of your built static site if not in root
+          SOURCE_DIR: 'Project_1'   # replace with the directory of your built static site if not in root
 
 
 
