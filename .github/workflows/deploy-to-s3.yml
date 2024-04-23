@@ -3,23 +3,24 @@ name: Deploy to Amazon S3
 on:
   push:
     branches:
-      - main
+        - main  # or any other branch you want to deploy from
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout 
-      uses: actions/checkout@v4
-  
-    - name: Configure AWS Credentials and Deploy to S3
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@v0.5.1
+  with:
+      args: --acl public-read --follow-symlinks --delete
+      env:
         aws-s3-bucket: githubactions-s3-melfoster
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # corrected typo
         aws-region: 'us-east-1'  # replace with the bucket's region
-        source-dir: 'C:\Users\melfr\Documents\LUIT\LUIT_Test_Projects\Project_1'
+        source-dir: 'PROJECT_1'
 
 
 
